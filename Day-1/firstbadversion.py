@@ -13,6 +13,8 @@
 # @return a bool
 # def isBadVersion(version):
 
+#Solution:
+
 class Solution:
     def firstBadVersion(self, n):
          return self.bs(0,n)
