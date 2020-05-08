@@ -1,0 +1,25 @@
+#In a binary tree, the root node is at depth 0, and children of each depth k node are at depth k+1.
+
+#Two nodes of a binary tree are cousins if they have the same depth, but have different parents.
+
+#We are given the root of a binary tree with unique values, and the values x and y of two different nodes in the tree.
+
+#Return true if and only if the nodes corresponding to the values x and y are cousins.
+
+class Solution:
+    def isCousins(self, root: TreeNode, x: int, y: int) -> bool:
+        parent = None
+        depth = 0
+        stack = deque()
+        stack.append((root,parent,depth))
+        dic = defaultdict()
+        while stack:
+            node,parent,depth = stack.popleft()
+            dic[node.val] = (parent,depth)
+            if node.left:
+                stack.append((node.left,node,depth+1))
+            if node.right:
+                stack.append((node.right,node,depth+1))
+        
+        return dic[x][0]!=dic[y][0] and dic[x][1]==dic[y][1]
+        
